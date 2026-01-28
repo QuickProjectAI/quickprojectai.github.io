@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cennik i Usługi - AI Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"> 
+<style>
+/* Style specyficzne dla tej podstrony (dla pewności, że zadziałają od razu) */
+table { width: 100%; border-collapse:collapse; margin: 20px 0; background: #fff; }
+th, td { padding: 15px; border: 1px solid #ddd; text-align: left; }
+th { background: #0077ff; color: white; }
+tr:nth-child(even) { background-color: #f2f2f2; }
+
+#searchBar {
+width: 50%;
+padding: 12px;
+margin-bottom: 20px;
+border: 2px solid #0077ff;
+border-radius: 5px;
+font-size: 16px;
+}
+</style>
+</head>
+<body>
+<header>
+<h1>AI Assistant</h1>
+<p>Ogarniam prezentacje, CV, streszczenia i dokumenty za Ciebie</p>
+</header>
+
+
+<nav class="navbar">
+<div class="container">
+<div class="logo">AI Assistant <img src="LOGO.png" width="20"></div>
+<ul class="nav-links" id="navLinks">
+<li><a href="index.html" class="btn-highlight">Strona Główna</a></li>
+<li><a href="cennik.html" class="btn-highlight"><strong>Cennik</strong></a></li>
+<li><a href="contact.html" class="btn-highlight">Kontakt</a></li>
+
+</ul>
+</div>
+</nav>
+
+<section>
+<h2>Dlaczego my?</h2>
+<ul>
+<h3>⭐Gwarancja jakości lub zwrot pieniędzy.</h3>
+<h3>⭐Ekspresowy czas realizacji (nawet w 2h).</h3>
+<h3>⭐Poufność Twoich danych (Tajemnica Zawodowa).</h3>
+</ul>
+</section>
+
+<section>
+<h2>Wyszukaj usługę🔍</h2>
+<p></p>
+
+<input type="text" id="searchBar" onkeyup="filterTable()" placeholder="Wpisz nazwę usługi, aby przefiltrować tabelę (np. Prezentacja lub CV).">
+
+<table id="servicesTable">
+<thead>
+<tr>
+<th>Usługa</th>
+<th>Opis</th>
+<th>Cena</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prezentacja Basic</td>
+<td>Do 10 slajdów, prosty styl</td>
+<td>29 zł</td>
+</tr>
+<tr>
+<td>Prezentacja Standard</td>
+<td>Do 20 slajdów, tradycyjny styl</td>
+<td>59 zł</td>
+</tr>
+<tr>
+<td>Prezentacja Premium</td>
+<td>Do 35 slajdów, animacje, grafika</td>
+<td>129 zł</td>
+</tr>
+<tr>
+<td>CV - Od zera</td>
+<td>Napisanie treści i design</td>
+<td>59 zł</td>
+</tr>
+<tr>
+<td>CV - Korekta</td>
+<td>Poprawa błędów i formatowania</td>
+<td>39 zł</td>
+</tr>
+<tr>
+<td>PAKIET: CV + LinkedIn</td>
+<td>CV od zera + Konto LinkedIn</td>
+<td>99 zł</td>
+</tr>
+<tr>
+<td>Streszczenie PDF</td>
+<td>Synteza dokumentu do 20 stron</td>
+<td>29 zł</td>
+</tr>
+</tbody>
+</table>
+</section>
+<script>
+function filterTable() {
+// 1. Pobieramy wpisany tekst
+var input = document.getElementById("searchBar");
+var filter = input.value.toUpperCase();
+var table = document.getElementById("servicesTable");
+var tr = table.getElementsByTagName("tr");
+
+// 2. Pętla przez wszystkie wiersze tabeli
+for (var i = 1; i < tr.length; i++) { // Zaczynamy od 1, żeby pominąć nagłówek
+var td = tr[i].getElementsByTagName("td")[0]; // Szukamy w pierwszej kolumnie (Usługa)
+if (td) {
+var txtValue = td.textContent || td.innerText;
+// 3. Sprawdzamy czy tekst pasuje
+if (txtValue.toUpperCase().indexOf(filter) > -1) {
+tr[i].style.display = ""; // Pokaż
+} else {
+tr[i].style.display = "none"; // Ukryj
+}
+}       
+}
+}
+</script>
+
+<footer>
+&copy; 2026 AI Assistant. Wszystkie prawa zastrzeżone.
+</footer>
+</body>
+</html>
