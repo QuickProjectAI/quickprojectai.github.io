@@ -1,109 +1,78 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kontakt — AI Assistant</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f4f7fa;
-      color: #333;
-    }
-    header {
-      padding: 80px 20px;
-      background: linear-gradient(135deg, #0077ff, #00c6ff);
-      color: #fff;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    header h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-    section {
-      max-width: 800px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    h2 {
-      color: #0077ff;
-      margin-top: 0;
-      margin-bottom: 30px;
-    }
-    p {
-      font-size: 1.1em;
-      margin: 10px 0;
-    }
-    a.contact-link {
-      display: block;
-      margin: 15px 0;
-      color: #0077ff;
-      font-weight: bold;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    a.contact-link:hover {
-      color: #005bb5;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      color: #fff;
-      margin-top: 40px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Kontakt - AI Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* Style formularza */
+form { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto; }
+input, select, textarea { 
+padding: 10px; 
+border: 1px solid #ccc; 
+border-radius: 5px; 
+font-family: inherit;
+}
+button[type="submit"] {
+background: #0077ff; color: white; border: none; padding: 15px;
+border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 1.1em;
+}
+button[type="submit"]:hover { background: #005bb5; }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Kontakt — AI Assistant</h1>
-    <p>Skontaktuj się ze mną, aby zlecić materiały lub uzyskać więcej informacji</p>
-  </header>
+<header>
+<h1>AI Assistant</h1>
+<p>Ogarniam prezentacje, CV, streszczenia i dokumenty za Ciebie</p>
+</header>
 
-  <section>
-    <h2>Możesz się ze mną skontaktować poprzez:</h2>
-    <p>Email: <a href="mailto:quickprojectai@gmail.com" class="contact-link">quickprojectai@gmail.com</a></p>
-    <p>Telefon: <a href="tel:+48534699775" class="contact-link">+48 534 699 775</a></p>
-    <p>Instagram: <a href="https://instagram.com/qpai2025" target="_blank" class="contact-link">@qpai2025</a></p>
-  </section>
+<nav class="navbar">
+<div class="container">
+<div class="logo">AI Assistant <img src="LOGO.png" width="20"></div>
+<ul class="nav-links" id="navLinks">
+<li><a href="index.html" class="btn-highlight">Strona Główna</a></li>
+<li><a href="cennik.html" class="btn-highlight">Cennik</a></li>
+<li><a href="contact.html" class="btn-highlight"><strong>Kontakt</strong></a></li>
 
-  <footer>
-    &copy; 2025 AI Assistant. Wszystkie prawa zastrzeżone.
-  </footer>
-</body>
-<style>
-    .sidebar {
-  position: fixed;
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
-  background: linear-gradient(135deg, #0077ff, #00c6ff);
-  padding: 15px 18px;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-}
-.sidebar a {
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  margin: 10px 0;
-}
-.sidebar a:hover {
-  opacity: 0.8;
-}
-
-</style>
-<div class="sidebar">
-  <a href="index.html">🏠 Start</a>
-  <a href="contact.html">📞 Kontakt</a>
+</ul>
 </div>
+</nav>
+<section>
+<form id="contactForm">
+
+<label for="name">Imię i Nazwisko:</label>
+<input type="text" id="name" name="name" placeholder="Jan Kowalski" required>
+
+<label for="email">Adres email:</label>
+<input type="email" id="email" name="email" placeholder="jankowalski@gmail.com" required>
+
+<label for="temat">Temat zlecenia:</label>
+<select id="temat" name="temat" required>
+  <option value="" disabled selected>Wybierz...</option>
+  <option value="prezentacja">Prezentacja</option>
+  <option value="cv">CV / List motywacyjny</option>
+  <option value="inne">Inne</option>
+</select>
+
+<label for="message">Wiadomość:</label>
+<textarea id="message" name="message" rows="4" placeholder="Podaj dokładne wytyczne projektu..." required></textarea>
+<button type="submit">Wyślij zgłoszenie</button>
+<p id="successMessage" style="display: none; color: green; font-weight: bold; margin-top: 15px; border: 1px solid green; padding: 10px; background: #e6fffa;">
+✅ Wysłano Twoje Zgłoszenie!
+</p>
+</form>
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+e.preventDefault(); 
+document.getElementById('successMessage').style.display = 'block';
+this.reset();
+this.querySelector('button').style.display = 'none';
+});
+</script>
+</section>
+<footer>
+&copy; 2026 AI Assistant. Wszystkie prawa zastrzeżone.
+</footer>
+</body>
 </html>
